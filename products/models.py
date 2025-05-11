@@ -22,6 +22,11 @@ class Products(models.Model):
     Img1 = models.ImageField(upload_to='images/', default='images/no-image.jpg')
     Img2 = models.ImageField(upload_to='images/', default='images/no-image.jpg')
     Img3 = models.ImageField(upload_to='images/', default='images/no-image.jpg')
+    is_flagged_fraud = models.BooleanField(default=False)
+    fraud_detection_reason = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Wishlist(models.Model):

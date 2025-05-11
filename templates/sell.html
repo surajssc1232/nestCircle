@@ -50,14 +50,29 @@ text-align: left;
 {% load i18n widget_tweaks %}
 
 <div style="width: 100%;margin-bottom:20px;"><img src="/static/images/sell_banner.jpg" style="width:100%"></div>
-<div class="container" style="margin-top:20px; align:center;">
+
+{# Display Messages #}
+{% if messages %}
+<div class="container" style="margin-top: 10px;">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="container" style="margin-top:20px; text-align:center;">
     <div class="row">
 
         <div class="col-lg-10">
              {% if user.is_authenticated %}
             <div class="card z-depth-3">
-                <div class="card-body" style="">
-                    <div class="col-lg-12"><h4><i class="fa fa-bullhorn"></i></h4></div>
+                <div class="card-body">
+                    <div class="col-lg-12"><h4><i class="fa fa-bullhorn"></i> Post New Ad</h4></div>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="col-lg-12">
@@ -70,7 +85,7 @@ text-align: left;
                             </div>
                             {% endfor %}
                         </div>
-                        <div class="col-lg-9">
+                        <div class="col-lg-9 offset-lg-3">
                             <input type="reset" class="btn btn-secondary" value="Cancel">
                             <input type="submit" class="btn btn-primary" value="Post AD"
                                    style="background: #FE980F; border-color:#FE980F ">
@@ -84,7 +99,7 @@ text-align: left;
                     <div class="row">
                         <div class="col-lg-12 z-depth-3"
                              style="text-align:center; margin-top:50px; padding:60px;">
-                            <img src="/static/images/no-orders.png" style="">
+                            <img src="/static/images/no-orders.png" alt="No orders placeholder">
                             <h2>You are logged out</h2>
                             <h4>Login or create account to post an AD...</h4>
                         </div>

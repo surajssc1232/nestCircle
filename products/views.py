@@ -98,13 +98,14 @@ def sell(request):
     if request.method == 'POST':
         form = Item(request.POST, request.FILES)
         if form.is_valid():
-            item = form.save()
+            item = form.save(commit=False) # Changed: Don't commit immediately
             item.seller = user.username
             item.save()
+            messages.success(request, 'Your ad has been posted successfully!') # Added this line
             return redirect('sell')
     else:
         form = Item()
-        return render(request, 'sell.html', {'form': form})
+    return render(request, 'sell.html', {'form': form}) # Ensure form is passed in both GET and POST (if form invalid)
 
 
 def buy(request, category):
