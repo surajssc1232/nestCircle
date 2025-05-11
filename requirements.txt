@@ -1,0 +1,12 @@
+asgiref
+Django
+django-dajax
+django-dajaxice
+django-widget-tweaks
+mysqlclient
+Pillow
+PyMySQL
+python-decouple
+pytz
+sqlparse
+django-email-verification==0.3.3
